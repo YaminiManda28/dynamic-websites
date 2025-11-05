@@ -1,0 +1,41 @@
+unction calculateTip() {
+    let billAmount = document.getElementById("billAmount").value;
+    let percentageTip = document.getElementById("percentageTip").value;
+    let tipAmount = document.getElementById("tipAmount");
+    let totalAmount = document.getElementById("totalAmount");
+    let errorMessage = document.getElementById("errorMessage");
+
+    // Reset outputs
+    tipAmount.value = "";
+    totalAmount.value = "";
+    errorMessage.textContent = "";
+
+    // Check for empty inputs
+    if (billAmount === "" && percentageTip === "") {
+        errorMessage.textContent = "Please enter Bill Amount and Tip Percentage";
+        return;
+    }
+    if (billAmount === "") {
+        errorMessage.textContent = "Please enter Bill Amount";
+        return;
+    }
+    if (percentageTip === "") {
+        errorMessage.textContent = "Please enter Tip Percentage";
+        return;
+    }
+
+    // Convert inputs to numbers
+    billAmount = parseInt(billAmount);
+    percentageTip = parseInt(percentageTip);
+
+    // Calculate tip and total
+    let calculatedTip = (percentageTip / 100) * billAmount;
+    let total = billAmount + calculatedTip;
+
+    // Display results
+    tipAmount.value = calculatedTip;
+    totalAmount.value = total;
+}
+
+// Attach function to button
+document.getElementById("calculateButton").onclick = calculateTip;
